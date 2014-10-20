@@ -102,7 +102,9 @@
             this.cbdurum.FormattingEnabled = true;
             this.cbdurum.Items.AddRange(new object[] {
             "En çok tekrar eden karakterler",
-            "En az tekrar eden karakterler"});
+            "En az tekrar eden karakterler",
+            "En çok tekrar eden iki harfli ",
+            "En çok tekrar eden üç harfli"});
             this.cbdurum.Location = new System.Drawing.Point(12, 174);
             this.cbdurum.Name = "cbdurum";
             this.cbdurum.Size = new System.Drawing.Size(179, 21);

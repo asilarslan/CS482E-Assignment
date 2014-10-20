@@ -100,6 +100,63 @@ namespace CS482E
                 }
             }
 
+            else if (cbdurum.SelectedIndex == 2)
+            {
+                double frekans;
+                string analizedilecektext;// = textBox1.Text;
+                if (rbbosluklu.Checked)
+                {
+                    analizedilecektext = textBox1.Text;
+                }
+                else
+                {
+                    analizedilecektext = String.Join("", textBox1.Text.Where(c => !char.IsWhiteSpace(c)));//boşlukları temizledik
+                }
+
+                
+                string[] letters = analizedilecektext.Select(c => c.ToString()).ToArray();
+                listView1.Items.Clear();
+                for (int i = 0; i < analizedilecektext.Length-1; i++)
+                {
+                    //Console.WriteLine(CommonCharacters(analizedilecektext.ToLower(), letters[i]+letters[i+1] ));
+                    frekans = Convert.ToDouble(CommonCharacters(analizedilecektext.ToLower(), letters[i].ToLower() + letters[i + 1].ToLower())) / analizedilecektext.Length;
+                    frekans = Math.Round(frekans, 5);
+                    ListViewItem Liste = new ListViewItem();
+                    Liste.Text = letters[i].ToLower() + letters[i + 1].ToLower();
+                    Liste.SubItems.Add(CommonCharacters(analizedilecektext.ToLower(), letters[i].ToLower() + letters[i + 1].ToLower()).ToString());
+                    Liste.SubItems.Add((frekans * 100).ToString() + "%");
+                    listView1.Items.Add(Liste);
+                }
+
+                  
+            }
+
+            else if (cbdurum.SelectedIndex==3)
+            {
+
+            }
+
+        }
+
+        public int CommonCharacters(string s1, string s2)
+        {
+            // bool[] matchedFlag = new bool[s2.Length];
+            int i = 0;
+
+            for (int i1 = 0; i1 < s1.Length - 1; i1++)
+            {
+                for (int i2 = 0; i2 < s2.Length - 1; i2++)
+                {
+                    if (s1.ToCharArray()[i1] == s2.ToCharArray()[i2] && s1.ToCharArray()[i1 + 1] == s2.ToCharArray()[i2 + 1])
+                    {
+                        //matchedFlag[i2] = true;
+                        //break;
+                        i++;
+                    }
+                }
+            }
+
+            return i;
         }
     }
 }
