@@ -16,6 +16,7 @@ namespace CS482E
         //This is your LAST CHANCE. After this, there is no turning back. You take the blue pill, the story ends. You wake up and believe whatever you want to believe. You take the red pill and you stay in wonderland, I show you just how deep the rabbit hole goes Remember. All I'm offering you is THE TRUTH : nothing more.
         private String newtext ;
         private int max = 500;
+        private ListViewColumnSorter lvwColumnSorter;
         public Form1()
         {
             InitializeComponent();
@@ -116,8 +117,16 @@ namespace CS482E
                 
                 string[] letters = analizedilecektext.Select(c => c.ToString()).ToArray();
                 listView1.Items.Clear();
+                List<string> list = new List<string>();
+                list.Clear();
                 for (int i = 0; i < analizedilecektext.Length-1; i++)
                 {
+                    
+                    
+                    if (!list.Exists(f => f.EndsWith((letters[i].ToLower() + letters[i + 1].ToLower()).ToString())))
+                    {
+                    
+
                     //Console.WriteLine(CommonCharacters(analizedilecektext.ToLower(), letters[i]+letters[i+1] ));
                     frekans = Convert.ToDouble(TwoCommonCharacters(analizedilecektext.ToLower(), letters[i].ToLower() + letters[i + 1].ToLower())) / analizedilecektext.Length;
                     frekans = Math.Round(frekans, 5);
@@ -125,7 +134,13 @@ namespace CS482E
                     Liste.Text = letters[i].ToLower() + letters[i + 1].ToLower();
                     Liste.SubItems.Add(TwoCommonCharacters(analizedilecektext.ToLower(), letters[i].ToLower() + letters[i + 1].ToLower()).ToString());
                     Liste.SubItems.Add((frekans * 100).ToString() + "%");
+                    lvwColumnSorter = new ListViewColumnSorter();
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                    this.listView1.ListViewItemSorter = lvwColumnSorter;
+
                     listView1.Items.Add(Liste);
+                    }
+                    list.Add((letters[i].ToLower() + letters[i + 1].ToLower()).ToString());
                 }
 
                   
@@ -147,8 +162,13 @@ namespace CS482E
 
                 string[] letters = analizedilecektext.Select(c => c.ToString()).ToArray();
                 listView1.Items.Clear();
+                List<string> list = new List<string>();
+                list.Clear();
                 for (int i = 0; i < analizedilecektext.Length - 2; i++)
                 {
+                    if (!list.Exists(f => f.EndsWith((letters[i].ToLower() + letters[i + 1].ToLower() + letters[i + 2].ToLower()).ToString())))
+                    {
+                    
                     //Console.WriteLine(CommonCharacters(analizedilecektext.ToLower(), letters[i]+letters[i+1] ));
                     frekans = Convert.ToDouble(ThreeCommonCharacters(analizedilecektext.ToLower(), letters[i].ToLower() + letters[i + 1].ToLower() + letters[i+2].ToLower())) / analizedilecektext.Length;
                     frekans = Math.Round(frekans, 5);
@@ -156,8 +176,14 @@ namespace CS482E
                     Liste.Text = letters[i].ToLower() + letters[i + 1].ToLower() +letters[i+2].ToLower();
                     Liste.SubItems.Add(ThreeCommonCharacters(analizedilecektext.ToLower(), letters[i].ToLower() + letters[i + 1].ToLower() +letters[i+2].ToLower()).ToString());
                     Liste.SubItems.Add((frekans * 100).ToString() + "%");
+
+                    lvwColumnSorter = new ListViewColumnSorter();
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                    this.listView1.ListViewItemSorter = lvwColumnSorter;
+
                     listView1.Items.Add(Liste);
-                    
+                    }
+                    list.Add((letters[i].ToLower() + letters[i + 1].ToLower() + letters[i + 2].ToLower()).ToString());
                 }
 
             }
