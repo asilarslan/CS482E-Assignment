@@ -78,10 +78,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ss\1.png" />
-    <Content Include="ss\2.png" />
-    <Content Include="ss\3.png" />
-    <Content Include="ss\4.png" />
+    <Content Include="screenshots\1.png" />
+    <Content Include="screenshots\2.png" />
+    <Content Include="screenshots\3.png" />
+    <Content Include="screenshots\4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
